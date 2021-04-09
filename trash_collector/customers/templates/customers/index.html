@@ -5,7 +5,8 @@
 {% block content %}
   {% if user.is_authenticated %}
     Hello Customer
-  {{user.id}} {{ user.username }} {{is_employee}} {(user.first_name}}!
+
+  {{user.id}} {{ user.username }} {{user.first_name}}!
 
 
 

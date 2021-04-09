@@ -26,7 +26,7 @@ def trash_customer(request):
         zipcode = request.POST.get('zipcode')
         state = request.POST.get('state')
         city = request.POST.get('city')
-        pickup_day = request.POST.get('city')
+        pickup_day = request.POST.get('pickup_day')
         user.first_name = first_name
         user.last_name = last_name
         user.save()
@@ -37,6 +37,8 @@ def trash_customer(request):
         customer.state = state
         customer.city = city
         customer.pickup_day = pickup_day
+        customer.user = user
+        customer.save()
 
         return HttpResponseRedirect(reverse('customers:index'))
     else:
