@@ -23,8 +23,10 @@ def trash_customer(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         address = request.POST.get('address')
+
         user.first_name = first_name
         user.last_name = last_name
+
         user.save()
         customer = Customer()
         customer.user_id = user.id

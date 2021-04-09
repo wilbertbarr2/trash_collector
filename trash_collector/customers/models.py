@@ -7,3 +7,5 @@ from django.db import models
 class Customer(models.Model):
     name = models.CharField(max_length=50)
     user = models.ForeignKey('accounts.User', default=0, on_delete=models.CASCADE)
+    zipcode = models.IntegerField(max_length=12)
+    city = models.CharField(max_length=50)

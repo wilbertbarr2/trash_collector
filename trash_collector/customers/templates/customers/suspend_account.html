@@ -10,6 +10,9 @@
 
 <form action="{% url 'customers:suspend_account' %}" method="post">
     {% csrf_token %}
+    Warning. Once you suspend this account, you can not use this account again.<br>
+    also, this username will no longer be available in the future, you will have to make<br>
+    a new account name and login.
     <input type="submit" value="Cancel Subscription">
 </form>
 
