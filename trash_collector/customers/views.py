@@ -27,6 +27,7 @@ def trash_customer(request):
         state = request.POST.get('state')
         city = request.POST.get('city')
         pickup_day = request.POST.get('pickup_day')
+        user.email = request.POST.get('email')
         user.first_name = first_name
         user.last_name = last_name
         user.save()
