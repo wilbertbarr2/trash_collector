@@ -9,5 +9,4 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('customer', views.trash_customer, name='trash_customer'),
     path('/suspend', views.suspend_account, name='suspend_account')
-
 ]

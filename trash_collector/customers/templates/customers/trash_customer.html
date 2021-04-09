@@ -10,9 +10,15 @@
 
 <form action="{% url 'customers:trash_customer' %}" method="post">
     {% csrf_token %}
-   First_Name:<input type="text" name="first_name" id="first_name"><br>
-   Last_Name:<input type="text" name="last_name" id="last_name"><br>
-    Address: <input type="text" name="address" id="address"><br>
+    First_Name:<input type="text" name="first_name" id="first_name"><br>
+    Last_Name:<input type="text" name="last_name" id="last_name"><br>
+    address : <input type="text" name="address" id="address"><br>
+    zipcode : <input type="text" name="zipcode" id="zipcode"><br>
+    state : <input type="text" name="state" id="state"><br>
+    city : <input type="text" name="city" id="city"><br>
+    pickup_day : <input type="text" name="pickup_day" id="pickup_day"><br>
+
+
     <input type="submit" value="Edit">
 
 </form>
