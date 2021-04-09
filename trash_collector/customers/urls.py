@@ -7,4 +7,6 @@ from . import views
 app_name = "customers"
 urlpatterns = [
     path('', views.index, name="index"),
+    path('customer', views.trash_customer, name='trash_customer'),
+    path('suspend', views.suspend, name='suspend')
 ]

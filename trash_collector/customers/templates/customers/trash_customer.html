@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{% block header %} Customer Home {% endblock %}{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    Register for Trash Collection services by filling out this form
+  {{user.id}} {{ user.username }} {{is_employee}}!
+{{user.first_name}}
+
+<form action="{% url 'customers:trash_customer' %}" method="post">
+    {% csrf_token %}
+   First_Name:<input type="text" name="first_name" id="first_name"><br>
+   Last_Name:<input type="text" name="last_name" id="last_name"><br>
+    Address: <input type="text" name="address" id="address"><br>
+    <input type="submit" value="Edit">
+
+</form>
+
+  {% else %}
+    <p>You are at the customer index, but you are not logged in.</p>
+    <a href="{% url 'login' %}">Log In</a>
+    <a href="{% url 'accounts:register' %}">Sign Up</a>
+  {% endif %}
+{% endblock %}
