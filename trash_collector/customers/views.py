@@ -23,12 +23,21 @@ def trash_customer(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         address = request.POST.get('address')
+        zipcode = request.POST.get('zipcode')
+        state = request.POST.get('state')
+        city = request.POST.get('city')
+        pickup_day = request.POST.get('city')
         user.first_name = first_name
         user.last_name = last_name
         user.save()
         customer = Customer()
-        customer.user_id = user.id
         customer.name = user.first_name + " " + user.last_name
+        customer.zipcode = zipcode
+        customer.address = address
+        customer.state = state
+        customer.city = city
+        customer.pickup_day = pickup_day
+
         return HttpResponseRedirect(reverse('customers:index'))
     else:
         return render(request, 'customers/trash_customer.html')
