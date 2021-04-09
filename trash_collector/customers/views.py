@@ -34,12 +34,12 @@ def trash_customer(request):
         return render(request, 'customers/trash_customer.html')
 
 
-def suspend(request):
+def suspend_account(request):
     if request.method == 'POST':
         user = request.user
         user.is_active = 0
         user.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
-        return render(request, 'customers/suspend.html')
+        return render(request, 'customers/suspend_account.html')
 

@@ -8,7 +8,7 @@
   {{user.id}} {{ user.username }} {{is_employee}}!
 {{user.first_name}}
 
-<form action="{% url 'customers:suspend_account.html' %}" method="post">
+<form action="{% url 'customers:suspend_account' %}" method="post">
     {% csrf_token %}
     <input type="submit" value="Cancel Subscription">
 </form>
