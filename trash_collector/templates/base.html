@@ -11,56 +11,57 @@
 {% if user.is_authenticated %}
   {% for group in user.groups.all%}
     {% if group.name == "Customers" %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'customers:index' %}">Customer Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'customers:trash_customer' %}">Edit Info</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'customers:suspend_account' %}">Cancel Subscription</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Request/Cancel</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'customers:index' %}">Customer Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'customers:trash_customer' %}">Edit Info</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'customers:suspend_account' %}">Cancel Subscription</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Request/Cancel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-{% if user.first_name != 'Null' %}
-<div class="container">
-  <div class="row">
-    <div class="col">
-      {{user.first_name}}
+    </nav>
+    {% if user.first_name != 'Null' and group.name == "Customers" %}
+    <div class="container">
+    <div class="row">
+      <div class="col">
+        {{user.first_name}}
+      </div>
+      <div class="col">
+        {{user.last_name}}
+      </div>
     </div>
-    <div class="col">
-      {{user.last_name}}
+    <div class="row">
+      <div class="col">
+        {{customer.address}}
+      </div>
+      <div class="col">
+        {{customer.city}}
+      </div>
+      <div class="col">
+        {{customer.phone_number}}
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      {{customer.address}}
     </div>
-    <div class="col">
-      {{customer.city}}
-    </div>
-    <div class="col">
-      {{customer.phone_number}}
-    </div>
-  </div>
-</div>
-{% endif %}
-    {% elif group.name == "Employees" %}
-    <p>Employee Navbar</p>
     {% endif %}
+
+  {% elif group.name == "Employees" %}
+    <p>Employee Navbar</p>
+  {% endif %}
   {% endfor %}
   <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% endif %}

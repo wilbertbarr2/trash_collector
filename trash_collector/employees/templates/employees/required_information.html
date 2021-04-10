@@ -5,18 +5,8 @@
 {% block content %}
   {% if user.is_authenticated %}
     Hello Employee {{ user.username }}!
-  {% if user.zipcode != null %}
-  <a href="#"> click to view route</a>
-  {% endif %}
-  {% if user.zipcode == null %}
-  Please fill out this form to get started.
-  <form action="{% url 'employees:zipcode' %}" method="post">
-    {% csrf_token %}
-    What zipcode will you be working in?
-    Zip Code:<input type="text" name="zipcode" id="zipcode"><br>
-    <input type="submit" value="submit">
-  </form>
-  {% endif %}
+
+
 
 
 
