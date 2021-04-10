@@ -41,15 +41,23 @@ def zipcode(request):
         return HttpResponseRedirect(reverse('employees:index'))
     else:
         user = request.user
-        employee = Employee.objects.get(pk=user.id)
+        employee = Employee.objects.get(user_id=user.id)
         context = {
             'employee': employee
         }
-        return render(request, 'employees/index.html', employee)
+        return render(request, 'employees/index.html', context)
 
 
 def match_zipcodes(request):
+    user = request.user
+    employee = Employee.objects.get(user_id=user.id)
     Customer = apps.get_model('customers.customer')
     customers = Customer.objects.all()
+    same_zipcode = []
     for customer in customers:
-        print(customer.zipcode)
+        if customer.zipcode == employee.zipcode:
+            same_zipcode.append(customer)
+    context = {
+        'customers': same_zipcode
+    }
+    return render(request, 'employees/index.html', context)

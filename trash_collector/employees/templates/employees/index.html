@@ -6,7 +6,16 @@
   {% if user.is_authenticated %}
     Hello Employee {{ user.username }}!
   {% if user.manages_zipcode != null %}
-    <a href="#"> click to view route</a>
+  {% for customer in customers %}
+    <ul>
+      <li><h style="fontsize: 4vw"> Name: {{customer.name}}<br>  </h>
+          <h>address: {{customer.address}} <br></h>
+          <h>zipcode: {{customer.zipcode}}<br></h>
+          <h>pickup day: {{customer.pickup_day}}<br></h>
+      </li>
+    </ul>
+  {% endfor %}
+    <a href="{% url 'employees:match_zip' %}"> click to view route</a>
   {% endif %}
   {% if user.manages_zipcode == null %}
   Please fill out this form to get started.
