@@ -4,8 +4,8 @@ from django.db import models
 
 # TODO: Create an Employee model with properties required by the user stories
 
-class Employee():
-    def __init__(self):
-        first_name = ""
-        last_name = ""
-        zipcode = ""
+
+class Employee(models.Model):
+    name = models.CharField(max_length=50)
+    user = models.ForeignKey('accounts.User', default=None, on_delete=models.CASCADE)
+    zipcode = models.CharField(max_length=50, default=None, null=True)
