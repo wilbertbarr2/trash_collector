@@ -40,7 +40,12 @@ def zipcode(request):
         employee.save()
         return HttpResponseRedirect(reverse('employees:index'))
     else:
-        return render(request, 'employees/index.html')
+        user = request.user
+        employee = Employee.objects.get(pk=user.id)
+        context = {
+            'employee': employee
+        }
+        return render(request, 'employees/index.html', employee)
 
 def match_zipcodes(request):
     Customer = apps.get_model('customers.customer')
