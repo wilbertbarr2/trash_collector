@@ -42,6 +42,7 @@ def zipcode(request):
     else:
         return render(request, 'employees/index.html')
 
+
 def match_zipcodes(request):
     Customer = apps.get_model('customers.customer')
     customers = Customer.objects.all()
