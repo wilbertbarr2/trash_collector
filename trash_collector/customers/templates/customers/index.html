@@ -6,8 +6,14 @@
   {% if user.is_authenticated %}
     Hello Customer
 
-  {{user.id}} {{ user.username }} {{user.first_name}}!
+  {{customer.name}} at {{ customer.address }} we'll see you each {{customer.pickup_day}}!<br>
 
+  You will be billed {{customer.balance}}$ at the end of this month.<br>
+  Or, you can click here to <a href="#">pay now</a><br>
+
+  Do you need a one time extra emergency trash pickup day?<br>
+  Or, do you need to suspend service temporarily while on vacation?
+  <a href="{% url 'customers:request_cancel' customer.id %}">Click here</a>
 
 
   {% else %}

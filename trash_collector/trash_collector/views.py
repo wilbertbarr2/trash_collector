@@ -1,4 +1,6 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
+
+
 
 
 def group_redirect(request):

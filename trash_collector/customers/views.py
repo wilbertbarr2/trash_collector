@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect, reverse, get_object_or_404
 from .models import Customer
 
 
@@ -12,9 +12,16 @@ def index(request):
     # get the logged in user within any view function
     user = request.user
     # This will be useful while creating a customer to assign the logged in user as the user foreign key
+    customers = Customer.objects.all()
+    for customer in customers:
+        if customer.user_id == user.id:
+            context = {
+                'customer': customer
+            }
+
     # Will also be useful in any function that needs
     print(user)
-    return render(request, 'customers/index.html')
+    return render(request, 'customers/index.html', context)
 
 
 def trash_customer(request):
@@ -31,17 +38,29 @@ def trash_customer(request):
         user.first_name = first_name
         user.last_name = last_name
         user.save()
-        customer = Customer()
-        customer.name = user.first_name + " " + user.last_name
-        customer.zipcode = zipcode
-        customer.address = address
-        customer.state = state
-        customer.city = city
-        customer.pickup_day = pickup_day
-        customer.user = user
-        customer.save()
-
-        return HttpResponseRedirect(reverse('customers:index'))
+        customers = Customer.objects.all()
+        for customer in customers:
+            if customer.user_id == user.id:
+                customer.name = user.first_name + " " + user.last_name
+                customer.zipcode = zipcode
+                customer.address = address
+                customer.state = state
+                customer.city = city
+                customer.pickup_day = pickup_day
+                customer.user = user
+                customer.save()
+                return HttpResponseRedirect(reverse('customers:index'))
+            else:
+                customer = Customer()
+                customer.name = user.first_name + " " + user.last_name
+                customer.zipcode = zipcode
+                customer.address = address
+                customer.state = state
+                customer.city = city
+                customer.pickup_day = pickup_day
+                customer.user = user
+                customer.save()
+            return HttpResponseRedirect(reverse('customers:index'))
     else:
         return render(request, 'customers/trash_customer.html')
 
@@ -55,3 +74,28 @@ def suspend_account(request):
     else:
         return render(request, 'customers/suspend_account.html')
 
+
+def request_cancel(request, customer_id):
+    customer = Customer.objects.get(pk=customer_id)
+    if request.method == 'POST':
+        one_time = request.POST.get('one_time')
+        extra_service = request.POST.get('extra_service')
+        start = request.POST.get('start')
+        end = request.POST.get('end')
+        if one_time is not None:
+            customer.has_used_one_time_extra_service = True
+            customer.onetime_pickup = one_time
+        if extra_service is not None:
+            customer.onetime_pickup = extra_service
+            customer.balance += 20
+        customer.tem_suspend_start = start
+        customer.tem_suspend_end = end
+        customer.save()
+
+        return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        customer = Customer.objects.get(pk=customer_id)
+        context = {
+            'customer': customer
+        }
+        return render(request, 'customers/request_cancel.html', context)
