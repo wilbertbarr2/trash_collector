@@ -18,10 +18,11 @@ def index(request):
             context = {
                 'customer': customer
             }
+            return render(request, 'customers/index.html', context)
 
     # Will also be useful in any function that needs
     print(user)
-    return render(request, 'customers/index.html', context)
+    return render(request, 'customers/index.html')
 
 
 def trash_customer(request):

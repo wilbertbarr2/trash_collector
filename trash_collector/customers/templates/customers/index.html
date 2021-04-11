@@ -4,8 +4,10 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    Hello Customer
-
+  {% if customer.id == null %}
+    Hello user, please register to become a customer above.
+  {% endif %}
+  {% if customer.id != null %}
   {{customer.name}} at {{ customer.address }} we'll see you each {{customer.pickup_day}}!<br>
 
   You will be billed {{customer.balance}}$ at the end of this month.<br>
@@ -13,8 +15,9 @@
 
   Do you need a one time extra emergency trash pickup day?<br>
   Or, do you need to suspend service temporarily while on vacation?
-  <a href="{% url 'customers:request_cancel' customer.id %}">Click here</a>
 
+  <a href="{% url 'customers:request_cancel' customer.id %}">Click here</a>
+  {% endif %}
 
   {% else %}
     <p>You are at the customer index, but you are not logged in.</p>

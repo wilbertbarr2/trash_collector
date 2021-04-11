@@ -6,16 +6,41 @@
   {% if user.is_authenticated %}
     Hello Employee {{ user.username }}!
   {% if user.manages_zipcode != null %}
-  {% for customer in customers %}
-    <ul>
-      <li><h style="fontsize: 4vw"> Name: {{customer.name}}<br>  </h>
-          <h>address: {{customer.address}} <br></h>
-          <h>zipcode: {{customer.zipcode}}<br></h>
-          <h>pickup day: {{customer.pickup_day}}<br></h>
-      </li>
-    </ul>
-  {% endfor %}
-    <a href="{% url 'employees:match_zip' %}"> click to view route</a>
+
+  DO NOT DOUBLE-CHARGE CUSTOMERS OR IT WILL COME OUT OF YOUR PAYCHECK. Until we get this fixed.
+  FOLLOW THESE INSTRUCTIONS. Check the people off as you collect, then at the end of the day when all are checked.
+  THEN go charging everyone, one by one, and remember the last person you charged so you dont do it twice.
+  Because, I cannot figure out how to keep check boxes from refreshing when they're charged, or how to remove the person after
+they're charged.<br>
+<a href="{% url 'employees:match_zip' %}"> click to view route</a>
+<div class="container" style="width: auto">
+  <div class="row" style="width: auto">
+    <div class="col-sm" style="width: auto">
+        <h1 style="font-size: 4vw; center">      Customers</h1>
+
+      <ul style="overflow-y: scroll; height:200px; width: auto">
+            {% for customer in customers %}
+        <li><h style="fontsize: 4vw"> Name: {{customer.name}}<br>  </h>
+            <h>address: {{customer.address}} <br></h>
+            <h>zipcode: {{customer.zipcode}}<br></h>
+            <h>pickup day: {{customer.pickup_day}}<br></h>
+          <button onclick="flexCheckDefault"><a href="{% url 'employees:charge_customer' customer.id %}">charge customer</a></button>
+                    <div class="form-check">
+            <input type="checkbox" id="cb" name="txtCheck" value="your value" <?php if(isset($_POST['txtCheck'])) echo "checked='checked'"; ?>
+            <label class="form-check-label" for="cb">
+              Check after you charge.
+            </label>
+            </div>
+
+        </li>
+          {% endfor %}
+      </ul>
+    </div>
+
+
+
+
+
   {% endif %}
   {% if user.manages_zipcode == null %}
   Please fill out this form to get started.

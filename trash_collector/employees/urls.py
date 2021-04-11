@@ -8,5 +8,6 @@ app_name = "employees"
 urlpatterns = [
     path('', views.index, name="index"),
     path('zip', views.zipcode, name="zipcode"),
-    path('route', views.match_zipcodes, name="match_zip")
+    path('hello', views.match_zipcodes, name="match_zip"),
+    path('charge/<int:customer_id>', views.charge_customer, name="charge_customer")
 ]
