@@ -2,7 +2,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.apps import apps
 from .models import Employee
-import datetime
+from datetime import timedelta, date, datetime
+
 import js2py
 
 
@@ -70,12 +71,31 @@ def match_zipcodes(request):
 
 def compare_days(customers):
     customerz = []
-    x = datetime.datetime.now()
+    x = datetime.now()
+
     for customer in customers:
         if x.strftime("%A") == customer.pickup_day:
-            customerz.append(customer)
-
+            if customer.tem_suspend_start is not None:
+                false = suspend_check(customer.tem_suspend_start.strftime("%Y-%m-%d"), customer.tem_suspend_end.strftime("%Y-%m-%d"))
+                if not false:
+                    customerz.append(customer)
+                else:
+                    continue
     return customerz
+
+## great job Rob on the time functions
+
+def suspend_check(start_date, end_date):
+    x = datetime.now()
+    x = x.strftime("%Y-%m-%d")
+    today_check = datetime.strptime(x, "%Y-%m-%d")
+    start = datetime.strptime(start_date, "%Y-%m-%d")
+    stop = datetime.strptime(end_date, "%Y-%m-%d")
+    while start < stop:
+        if start == today_check:
+            return True
+        start = start + timedelta(days=1)
+    return False
 
 
 def charge_customer(request, customer_id):
@@ -106,3 +126,4 @@ def re_match_zipcodes(request, customer_id):
         'customers': same_zipcode
     }
     return render(request, 'employees/index.html', context)
+
