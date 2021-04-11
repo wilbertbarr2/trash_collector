@@ -59,7 +59,7 @@ def match_zipcodes(request):
     for customer in customers:
         if customer.zipcode == employee.zipcode:
             same_zipcode.append(customer)
-    same_zipcode = compare_days(customers)
+    same_zipcode = compare_days(same_zipcode)
     context = {
         'customers': same_zipcode
     }
@@ -98,7 +98,7 @@ def re_match_zipcodes(request, customer_id):
     for customer in customers:
         if customer.zipcode == employee.zipcode:
             same_zipcode.append(customer)
-    same_zipcode = compare_days(customers)
+    same_zipcode = compare_days(same_zipcode)
     #for customer in same_zipcode:
     #    if customer.id == customer_id:
     #        same_zipcode.remove(customer)

@@ -18,7 +18,7 @@ they're charged.<br>
     <div class="col-sm" style="width: auto">
         <h1 style="font-size: 4vw; center">      Customers</h1>
 
-      <ul style="overflow-y: scroll; height:200px; width: auto">
+      <ul style="overflow-y: scroll; height:250px; width: auto">
             {% for customer in customers %}
         <li><h style="fontsize: 4vw"> Name: {{customer.name}}<br>  </h>
             <h>address: {{customer.address}} <br></h>
@@ -28,7 +28,7 @@ they're charged.<br>
                     <div class="form-check">
             <input type="checkbox" id="cb" name="txtCheck" value="your value" <?php if(isset($_POST['txtCheck'])) echo "checked='checked'"; ?>
             <label class="form-check-label" for="cb">
-              Check after you charge.
+             Check after collection<br> but don't press charge yet.
             </label>
             </div>
 

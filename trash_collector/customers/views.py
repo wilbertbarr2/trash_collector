@@ -100,3 +100,5 @@ def request_cancel(request, customer_id):
             'customer': customer
         }
         return render(request, 'customers/request_cancel.html', context)
+
+
