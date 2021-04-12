@@ -1,46 +1,28 @@
- {% load static %}
-
- {% extends 'main/header.html' %}
-
-  {% block content %}
-
-  {% load static %}
-
-
-   <div class="container">
-     <img class="img-fluid" src="{% static 'img/photo.png' %}" alt="photo">
-   </div>
-
-
-  {% endblock %}
-
 
 {% extends 'base.html' %}
 
 {% block title %}Home Portal{% endblock %}
 
 {% block content %}
+{% load static %}
 {% if user.is_authenticated %}
   Hello {{ user.username }}. You don't have a group assigned. Please contact administrator or attempt to register again.
   <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% else %}
+   <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="fa fa-minus-square-o" src="{% static 'image/icon.png' %}" alt="photo" style="font-size: 0.73em;">><img class="img-fluid" src="{% static 'image/icon.png' %}" alt="photo"></a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'accounts:register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
   <p>You are not logged in. Please log in or create an account.</p>
-  <a href="{% url 'login' %}">Log In</a>
-  <a href="{% url 'accounts:register' %}">Sign Up</a>
+<img class="img-fluid" src="{% static 'image/trucks.png' %}" alt="photo">
+
 {% endif %}
 {% endblock %}
-
-{# This is the home page that allows a logged out user to register or log in #}{% extends 'main/header.html' %}
-
-
-  {% block content %}
-
-  {% load static %}  #load static
-
-
-   <div class="container">
-
-   </div>
-
-
-  {% endblock %}
+{# This is the home page that allows a logged out user to register or log in #}
