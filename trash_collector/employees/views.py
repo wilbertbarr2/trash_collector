@@ -75,12 +75,14 @@ def compare_days(customers):
 
     for customer in customers:
         if x.strftime("%A") == customer.pickup_day:
+
             if customer.tem_suspend_start is not None:
-                false = suspend_check(customer.tem_suspend_start.strftime("%Y-%m-%d"), customer.tem_suspend_end.strftime("%Y-%m-%d"))
-                if not false:
-                    customerz.append(customer)
-                else:
+                boolean = suspend_check(customer.tem_suspend_start.strftime("%Y-%m-%d"), customer.tem_suspend_end.strftime("%Y-%m-%d"))
+                if boolean == True:
                     continue
+                if boolean == False:
+                    pass
+            customerz.append(customer)
     return customerz
 
 ## great job Rob on the time functions
