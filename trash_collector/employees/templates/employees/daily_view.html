@@ -20,16 +20,16 @@
   </select>
   <input type="submit">
 </form>
-<div class="container" style="width: auto">
-  <div class="row" style="width: auto">
+<div class="container" style="height: max, width: auto">
+  <div class="row" style="height: max, width: auto">
     <div class="col-sm" style="width: auto">
-      <ul style="overflow-y: scroll; height:250px; width: auto">
+      <ul style="overflow-y: scroll; height:350px; width: auto">
             {% for customer in customers %}
         <li><h style="fontsize: 4vw"> Name: {{customer.name}}<br>  </h>
             <h>address: {{customer.address}} <br></h>
             <h>zipcode: {{customer.zipcode}}<br></h>
             <h>pickup day: {{customer.pickup_day}}<br></h>
-          <button onclick="flexCheckDefault"><a href="#">DO NOT COLLECT TODAY</a></button>
+            <br>
         </li>
           {% endfor %}
       </ul>
