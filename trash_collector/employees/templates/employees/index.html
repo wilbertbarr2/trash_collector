@@ -10,7 +10,7 @@
 <div class="container" style="width: auto">
   <div class="row" style="width: auto">
     <div class="col-sm" style="width: auto">
-      <h1 style="font-size: 4vw; center"> {% if end == False %}  LET'S GET STARTED!<a href="{% url 'employees:match_zip' %}"> click to view route</a> {% endif %} {% if end == True %} COMPLETE {% endif %}</h1>
+      <h1 style="font-size: 4vw; center"> {% if end == False %}  LET'S GET STARTED! Click START WORK in the navbar {% endif %} {% if end == True %} COMPLETE {% endif %}</h1>
         {% if end == True %}
   <br>Great work! You're done for the day!<br> Logout and go home.
   {% endif %}
@@ -28,7 +28,6 @@
     </div>
   </div>
 </div>
-
 
 
   {% endif %}

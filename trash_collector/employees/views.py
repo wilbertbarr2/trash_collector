@@ -53,22 +53,6 @@ def zipcode(request):
         }
         return render(request, 'employees/index.html', context)
 
-#
-# def match_zipcodes(request):
-#     user = request.user
-#     employee = Employee.objects.get(user_id=user.id)
-#     Customer = apps.get_model('customers.customer')
-#     customers = Customer.objects.all()
-#     same_zipcode = []
-#     for customer in customers:
-#         if customer.zipcode == employee.zipcode:
-#             same_zipcode.append(customer)
-#     same_zipcode = compare_days(same_zipcode)
-#     context = {
-#         'customers': same_zipcode
-#     }
-#     return render(request, 'employees/index.html', context)
-#
 
 ## Great job Rob on figuring out how to do this compare_days function!
 
@@ -163,3 +147,20 @@ def match_zipcodes(request):
     }
     return render(request, 'employees/index.html', context)
 
+
+def daily_view(request):
+    if request.method == 'POST':
+        Customer = apps.get_model('customers.customer')
+        customers = Customer.objects.all()
+        day = request.POST.get('day')
+        other_day = []
+        for customer in customers:
+            if customer.pickup_day == day:
+                other_day.append(customer)
+        context = {
+            'customers': other_day
+        }
+        return render(request, 'employees/daily_view.html', context)
+
+    else:
+        return render(request, 'employees/daily_view.html')
