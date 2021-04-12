@@ -1,3 +1,20 @@
+ {% load static %}
+
+ {% extends 'main/header.html' %}
+
+  {% block content %}
+
+  {% load static %}
+
+
+   <div class="container">
+     <img class="img-fluid" src="{% static 'img/photo.png' %}" alt="photo">
+   </div>
+
+
+  {% endblock %}
+
+
 {% extends 'base.html' %}
 
 {% block title %}Home Portal{% endblock %}
@@ -13,4 +30,17 @@
 {% endif %}
 {% endblock %}
 
-{# This is the home page that allows a logged out user to register or log in #}
+{# This is the home page that allows a logged out user to register or log in #}{% extends 'main/header.html' %}
+
+
+  {% block content %}
+
+  {% load static %}  #load static
+
+
+   <div class="container">
+
+   </div>
+
+
+  {% endblock %}
