@@ -14,6 +14,7 @@ class Customer(models.Model):
     pickup_day = models.CharField(max_length=50, default=None)
     balance = models.IntegerField(default=0)
     onetime_pickup = models.DateField(null=True)
+    last_pickup_date = models.DateField(null=True)
     tem_suspend_start = models.DateField(null=True)
     tem_suspend_end = models.DateField(null=True)
     has_used_one_time_extra_service = models.BooleanField(default=False)

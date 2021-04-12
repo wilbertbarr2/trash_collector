@@ -4,19 +4,16 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    Hello Employee {{ user.username }}!
+   {% if end == False %} Hello Employee {{ user.username }}! {% endif %}
   {% if user.manages_zipcode != null %}
 
-  DO NOT DOUBLE-CHARGE CUSTOMERS OR IT WILL COME OUT OF YOUR PAYCHECK. Until we get this fixed.
-  FOLLOW THESE INSTRUCTIONS. Check the people off as you collect, then at the end of the day when all are checked.
-  THEN go charging everyone, one by one, and remember the last person you charged so you dont do it twice.
-  Because, I cannot figure out how to keep check boxes from refreshing when they're charged, or how to remove the person after
-they're charged.<br>
-<a href="{% url 'employees:match_zip' %}"> click to view route</a>
 <div class="container" style="width: auto">
   <div class="row" style="width: auto">
     <div class="col-sm" style="width: auto">
-        <h1 style="font-size: 4vw; center">      Customers</h1>
+      <h1 style="font-size: 4vw; center"> {% if end == False %}  LET'S GET STARTED!<a href="{% url 'employees:match_zip' %}"> click to view route</a> {% endif %} {% if end == True %} COMPLETE {% endif %}</h1>
+        {% if end == True %}
+  <br>Great work! You're done for the day!<br> Logout and go home.
+  {% endif %}
 
       <ul style="overflow-y: scroll; height:250px; width: auto">
             {% for customer in customers %}
@@ -25,19 +22,12 @@ they're charged.<br>
             <h>zipcode: {{customer.zipcode}}<br></h>
             <h>pickup day: {{customer.pickup_day}}<br></h>
           <button onclick="flexCheckDefault"><a href="{% url 'employees:charge_customer' customer.id %}">charge customer</a></button>
-                    <div class="form-check">
-            <input type="checkbox" id="cb" name="txtCheck" value="your value" <?php if(isset($_POST['txtCheck'])) echo "checked='checked'"; ?>
-            <label class="form-check-label" for="cb">
-             Check after collection<br> but don't press charge yet.
-            </label>
-            </div>
-
         </li>
           {% endfor %}
       </ul>
     </div>
-
-
+  </div>
+</div>
 
 
 
@@ -67,4 +57,4 @@ they're charged.<br>
     <a href="{% url 'login' %}">Log In</a>
     <a href="{% url 'accounts:register' %}">Sign Up</a>
   {% endif %}
-{% endblock %}
+  {% endblock %}

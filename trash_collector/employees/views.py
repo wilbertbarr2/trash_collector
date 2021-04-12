@@ -20,8 +20,11 @@ def index(request):
     customers = Customer.objects.all()
     for customer in customers:
         print(customer.zipcode)
+    context = {
+        'end': False
+    }
 
-    return render(request, 'employees/index.html')
+    return render(request, 'employees/index.html', context)
 
 
 def zipcode(request):
@@ -50,21 +53,22 @@ def zipcode(request):
         }
         return render(request, 'employees/index.html', context)
 
-
-def match_zipcodes(request):
-    user = request.user
-    employee = Employee.objects.get(user_id=user.id)
-    Customer = apps.get_model('customers.customer')
-    customers = Customer.objects.all()
-    same_zipcode = []
-    for customer in customers:
-        if customer.zipcode == employee.zipcode:
-            same_zipcode.append(customer)
-    same_zipcode = compare_days(same_zipcode)
-    context = {
-        'customers': same_zipcode
-    }
-    return render(request, 'employees/index.html', context)
+#
+# def match_zipcodes(request):
+#     user = request.user
+#     employee = Employee.objects.get(user_id=user.id)
+#     Customer = apps.get_model('customers.customer')
+#     customers = Customer.objects.all()
+#     same_zipcode = []
+#     for customer in customers:
+#         if customer.zipcode == employee.zipcode:
+#             same_zipcode.append(customer)
+#     same_zipcode = compare_days(same_zipcode)
+#     context = {
+#         'customers': same_zipcode
+#     }
+#     return render(request, 'employees/index.html', context)
+#
 
 ## Great job Rob on figuring out how to do this compare_days function!
 
@@ -120,27 +124,40 @@ def suspend_check(start_date, end_date):
 def charge_customer(request, customer_id):
     Customer = apps.get_model('customers.customer')
     customers = Customer.objects.all()
+    x = datetime.now()
+    picked_up = x.strftime("%Y-%m-%d")
     for customer in customers:
         if customer.id == customer_id:
-            customer.balance += 10
+            customer.last_pickup_date = picked_up
+            customer.balance += 3
             customer.save()
-            return re_match_zipcodes(request, customer.id)
+            return match_zipcodes(request)
     return match_zipcodes(request)
 
 
-def re_match_zipcodes(request, customer_id):
+def match_zipcodes(request):
     user = request.user
     employee = Employee.objects.get(user_id=user.id)
     Customer = apps.get_model('customers.customer')
     customers = Customer.objects.all()
     same_zipcode = []
+    x = datetime.now()
+    prevent_double_charge = x.strftime("%Y-%m-%d")
     for customer in customers:
         if customer.zipcode == employee.zipcode:
-            same_zipcode.append(customer)
+            if customer.last_pickup_date is None:
+                same_zipcode.append(customer)
+            if customer.last_pickup_date is not None:
+                last_pickup = customer.last_pickup_date.strftime("%Y-%m-%d")
+                if last_pickup != prevent_double_charge:
+                    same_zipcode.append(customer)
+
     same_zipcode = compare_days(same_zipcode)
-    #for customer in same_zipcode:
-    #    if customer.id == customer_id:
-    #        same_zipcode.remove(customer)
+    if len(same_zipcode) < 1:
+        context = {
+            'end': True
+        }
+        return render(request, 'employees/index.html', context)
     context = {
         'customers': same_zipcode
     }
