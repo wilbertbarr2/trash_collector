@@ -7,17 +7,16 @@
   {% if user.is_authenticated %}
   {% if customer.id == null %}
     Hello user, please register to become a customer above.
+    Select "Edit Info" in the navbar, and you can change your pickup day anytime by re-submitting that form.
   {% endif %}
   {% if customer.id != null %}
 
   {{customer.name}} at {{ customer.address }} we'll see you each {{customer.pickup_day}}!<br>
 
 
-
-
   Do you need a one time extra emergency trash pickup day?<br>
   Or, do you need to suspend service temporarily while on vacation?
-  Click "Request/Cancel" on the navigation bar, or.
+  Click "Extra Service" on the navigation bar, or.
 
   <a href="{% url 'customers:request_cancel' customer.id %}">Click here</a><br>
   <br>

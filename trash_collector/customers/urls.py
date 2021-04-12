@@ -8,6 +8,6 @@ app_name = "customers"
 urlpatterns = [
     path('', views.index, name="index"),
     path('customer', views.trash_customer, name='trash_customer'),
-    path('suspend', views.suspend_account, name='suspend_account'),
+    path('suspend/', views.suspend_account, name='suspend_account'),
     path('request/<int:customer_id>', views.request_cancel, name="request_cancel")
 ]

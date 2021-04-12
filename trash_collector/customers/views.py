@@ -22,7 +22,7 @@ def index(request):
 
     # Will also be useful in any function that needs
     print(user)
-    return render(request, 'customers/index.html')
+    print(ERROR)
 
 
 def trash_customer(request):
@@ -77,7 +77,7 @@ def suspend_account(request):
 
 
 def request_cancel(request, customer_id):
-    customer = Customer.objects.get(pk=customer_id)
+    customer = Customer.objects.get(user_id=customer_id)
     if request.method == 'POST':
         one_time = request.POST.get('one_time')
         extra_service = request.POST.get('extra_service')
@@ -95,7 +95,7 @@ def request_cancel(request, customer_id):
 
         return HttpResponseRedirect(reverse('customers:index'))
     else:
-        customer = Customer.objects.get(pk=customer_id)
+        customer = Customer.objects.get(user_id=customer_id)
         context = {
             'customer': customer
         }
