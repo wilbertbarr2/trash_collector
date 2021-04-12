@@ -10,13 +10,13 @@
 
 <form action="{% url 'customers:trash_customer' %}" method="post">
     {% csrf_token %}
-    First_Name:<input type="text" name="first_name" id="first_name"><br>
-    Last_Name:<input type="text" name="last_name" id="last_name"><br>
-    Email:<input type="text" name="email" id="email"><br>
-    Address : <input type="text" name="address" id="address"><br>
-    Zipcode : <input type="text" name="zipcode" id="zipcode"><br>
-    State : <input type="text" name="state" id="state"><br>
-    City : <input type="text" name="city" id="city"><br>
+    First_Name:<input type="text" name="first_name" id="first_name" required maxlength="45"><br>
+    Last_Name:<input type="text" name="last_name" id="last_name" required maxlength="45"><br>
+    Email:<input type="text" name="email" id="email" required maxlength="45"><br>
+    Address : <input type="text" name="address" id="address" required maxlength="45"><br>
+    Zipcode : <input type="text" name="zipcode" id="zipcode" required maxlength="45"><br>
+    State : <input type="text" name="state" id="state" required maxlength="45"><br>
+    City : <input type="text" name="city" id="city" required maxlength="45"><br>
     Pickup_day : <label for="pickup_day">Choose a day:</label>
   <select id="pickup_day" name="pickup_day">
     <option value="Monday">Monday</option>
@@ -41,3 +41,11 @@
 {% endblock %}
 
 <!--<input type="text" name="pickup_day" id="pickup_day" value="Monday">-->
+
+<form>
+<label for="firstname"> First Name: </label>
+<input type="text" name="firstname" id="firstname" required maxlength="45">
+<label for="lastname"> Last Name: </label>
+<input type="text" name="lastname" id="lastname" required maxlength="45">
+<button>Submit</button>
+</form>
