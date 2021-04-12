@@ -35,6 +35,7 @@ def trash_customer(request):
         state = request.POST.get('state')
         city = request.POST.get('city')
         pickup_day = request.POST.get('pickup_day')
+        pickup_day = pickup_day.capitalize()
         user.email = request.POST.get('email')
         user.first_name = first_name
         user.last_name = last_name
@@ -48,19 +49,20 @@ def trash_customer(request):
                 customer.state = state
                 customer.city = city
                 customer.pickup_day = pickup_day
+                customer.user_id = user.id
                 customer.save()
                 return HttpResponseRedirect(reverse('customers:index'))
-            else:
-                customer = Customer()
-                customer.name = user.first_name + " " + user.last_name
-                customer.zipcode = zipcode
-                customer.address = address
-                customer.state = state
-                customer.city = city
-                customer.pickup_day = pickup_day
-                customer.user = user
-                customer.save()
-            return HttpResponseRedirect(reverse('customers:index'))
+
+        customer = Customer()
+        customer.name = user.first_name + " " + user.last_name
+        customer.zipcode = zipcode
+        customer.address = address
+        customer.state = state
+        customer.city = city
+        customer.pickup_day = pickup_day
+        customer.user = user
+        customer.save()
+        return HttpResponseRedirect(reverse('customers:index'))
     else:
         return render(request, 'customers/trash_customer.html')
 
