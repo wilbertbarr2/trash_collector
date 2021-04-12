@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}{% block header %} Employee Home {% endblock %}{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    Hello Employee {{ user.username }}!
+
+
+
+<form action="{% url 'employees:daily_view' %}" method="post">
+  {% csrf_token %}
+  <label for="day">Choose a car:</label>
+  <select id="day" name="day">
+    <option value="Monday">Monday</option>
+    <option value="Tuesday">Tuesday</option>
+    <option value="Wednesday">Wednesday</option>
+    <option value="Thursday">Thursday</option>
+    <option value="Friday">Friday</option>
+  </select>
+  <input type="submit">
+</form>
+<div class="container" style="width: auto">
+  <div class="row" style="width: auto">
+    <div class="col-sm" style="width: auto">
+      <ul style="overflow-y: scroll; height:250px; width: auto">
+            {% for customer in customers %}
+        <li><h style="fontsize: 4vw"> Name: {{customer.name}}<br>  </h>
+            <h>address: {{customer.address}} <br></h>
+            <h>zipcode: {{customer.zipcode}}<br></h>
+            <h>pickup day: {{customer.pickup_day}}<br></h>
+          <button onclick="flexCheckDefault"><a href="#">DO NOT COLLECT TODAY</a></button>
+        </li>
+          {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  {% else %}
+    <p>You are at the employee index, but you are not logged in.</p>
+    <a href="{% url 'login' %}">Log In</a>
+    <a href="{% url 'accounts:register' %}">Sign Up</a>
+  {% endif %}
+{% endblock %}
