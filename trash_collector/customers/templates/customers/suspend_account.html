@@ -4,9 +4,12 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    Register for Trash Collection services by filling out this form
   {{user.id}} {{ user.username }} {{is_employee}}!
 {{user.first_name}}
+{% if customer.balance > 1 %}
+You must pay your debt before you can close your account
+{% endif %}
+{% if customer.balance < 1 %}
 
 <form action="{% url 'customers:suspend_account' %}" method="post">
     {% csrf_token %}
@@ -15,7 +18,7 @@
     a new account name and login.
     <input type="submit" value="Cancel Subscription">
 </form>
-
+{% endif %}
   {% else %}
     <p>You are at the customer index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>

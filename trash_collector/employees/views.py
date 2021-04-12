@@ -82,10 +82,27 @@ def compare_days(customers):
                     continue
                 if boolean == False:
                     pass
-            customerz.append(customer)
+            if customer.balance < 100:
+                customerz.append(customer)
+        if customer.onetime_pickup is not None:
+            boolean = check_one_time_pickup(customer.onetime_pickup.strftime("%Y-%m-%d"))
+            if boolean == True:
+                if customer.balance < 100:
+                    customerz.append(customer)
+            if boolean == False:
+                pass
+
     return customerz
 
 ## great job Rob on the time functions
+
+def check_one_time_pickup(customer_onetime_pickup):
+    x = datetime.now()
+    today_check = x.strftime("%Y-%m-%d")
+    if today_check == customer_onetime_pickup:
+        return True
+    else:
+        return False
 
 def suspend_check(start_date, end_date):
     x = datetime.now()

@@ -13,16 +13,19 @@
 
   {{customer.name}} at {{ customer.address }} we'll see you each {{customer.pickup_day}}!<br>
 
-
+  {% if customer.onetime_pickup != None %}
+  <br>We will be there {{customer.onetime_pickup}} for your one time pickup.<br>
+  {% endif %}
+  <br>
   Do you need a one time extra emergency trash pickup day?<br>
   Or, do you need to suspend service temporarily while on vacation?
-  Click "Extra Service" on the navigation bar, or.
-
-  <a href="{% url 'customers:request_cancel' customer.id %}">Click here</a><br>
+  <br>Click "Extra Service" on the navigation bar.<br>
   <br>
   You currently owe {{customer.balance}}$.<br>
+  {% if customer.balance > 90 %}
   If you owe more than 100$ we will stop collecting your garbage until debt is paid.<br>
   Handle your debts below.
+  {% endif %}
 
   <script
     src="https://www.paypal.com/sdk/js?client-id=AVitJxfGd6hiPZP_bMDPBCtrickBs0imoCmj712De3dHVX-tWsy_2EA8A3nHDpb1SwUXtiE_bBv5PipR"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.

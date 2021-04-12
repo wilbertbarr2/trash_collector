@@ -31,7 +31,7 @@
              <a class="nav-link" href="{% url 'customers:suspend_account' %}">Close Account</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link" href="{% url 'logout' %}" tabindex="-1" aria-disabled="true">Logout</a>
           </li>
         </ul>
       </div>
@@ -63,9 +63,10 @@
 
   {% elif group.name == "Employees" %}
     <p>Employee Navbar</p>
+    <p><a href="{% url 'logout' %}">Log Out</a></p>
   {% endif %}
   {% endfor %}
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
+
 {% endif %}
   <main>
     <h1>{% block header %} {% endblock %}</h1>
