@@ -1,37 +1,51 @@
 {% extends 'base.html' %}
 
-{% block title %}{% block header %} Customer Home {% endblock %}{% endblock %}
+{% block title %}{% block header %}  <br>   {% endblock %}{% endblock %}
 
 {% block content %}
 
   {% if user.is_authenticated %}
   {% if customer.id == null %}
     Hello user, please register to become a customer above.
-    Select "Edit Info" in the navbar, and you can change your pickup day anytime by re-submitting that form.
+    Select "Register" in the navbar, and you can change your pickup day anytime by clicking there also.
   {% endif %}
   {% if customer.id != null %}
+<div class="alert alert-success" role="alert">
+   GREEN LIGHT TO GO! {{customer.name}} at {{ customer.address }} we'll see you each {{customer.pickup_day}}!
+</div>
 
-  {{customer.name}} at {{ customer.address }} we'll see you each {{customer.pickup_day}}!<br>
 
   {% if customer.onetime_pickup != None %}
-  <br>We will be there {{customer.onetime_pickup}} for your one time pickup.<br>
+<div class="alert alert-dark" role="alert">
+  We will be there {{customer.onetime_pickup}} for your one time pickup
+</div>
+  .<br>
   {% endif %}
+<div class="alert alert-dark" role="alert">
+   Do you need a one time extra emergency trash pickup day?
+  Do you need to suspend service temporarily while on vacation?
+  <br>Click "Extra Service" on the navigation bar.
+</div>
+
   <br>
-  Do you need a one time extra emergency trash pickup day?<br>
-  Or, do you need to suspend service temporarily while on vacation?
-  <br>Click "Extra Service" on the navigation bar.<br>
+<div class="alert alert-warning" role="alert">
+  You currently owe {{customer.balance}}$.
+</div>
   <br>
-  You currently owe {{customer.balance}}$.<br>
   {% if customer.balance > 90 %}
-  If you owe more than 100$ we will stop collecting your garbage until debt is paid.<br>
+<div class="alert alert-danger" role="alert">
+   If you owe more than 100$ we will stop collecting your garbage until debt is paid.
+  <br>
   Handle your debts below.
+</div>
+
   {% endif %}
 
   <script
     src="https://www.paypal.com/sdk/js?client-id=AVitJxfGd6hiPZP_bMDPBCtrickBs0imoCmj712De3dHVX-tWsy_2EA8A3nHDpb1SwUXtiE_bBv5PipR"> // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
   </script>
 
-  <div id="paypal-button-container"></div>
+  <div id="paypal-button-container" style="text-align: center"></div>
 
 
 <script>

@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}{% block header %} Customer Home {% endblock %}{% endblock %}
+{% block title %}{% block header %} Register {% endblock %}{% endblock %}
 
 {% block content %}
   {% if user.is_authenticated %}
-    Register for Trash Collection services by filling out this form
-  {{user.id}} {{ user.username }} {{is_employee}}!
-{{user.first_name}}
+ {% if user.firstname == '' %}
+<p>Register for Trash Collection services by filling out this form.</p>
+{% endif %}
+
+{{user.first_name}} {{user.last_name}}
 
 <form action="{% url 'customers:trash_customer' %}" method="post">
     {% csrf_token %}
@@ -17,22 +19,18 @@
     Zipcode : <input type="text" name="zipcode" id="zipcode" required maxlength="45"><br>
     State : <input type="text" name="state" id="state" required maxlength="45"><br>
     City : <input type="text" name="city" id="city" required maxlength="45"><br>
-    Pickup_day : <label for="pickup_day">Choose a day:</label>
+    <label for="pickup_day">Choose day you want your garbage collected:</label>
   <select id="pickup_day" name="pickup_day">
     <option value="Monday">Monday</option>
     <option value="Tuesday">Tuesday</option>
     <option value="Wednesday">Wednesday</option>
     <option value="Thursday">Thursday</option>
     <option value="Friday">Friday</option>
-  </select>
-    <br>
-
-
+  </select><br>
     <input type="submit" value="Edit Submit">
-
 </form>
 
-  {% else %}
+ {% else %}
     <p>You are at the customer index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
     <a href="{% url 'accounts:register' %}">Sign Up</a>
@@ -41,10 +39,3 @@
 
 <!--<input type="text" name="pickup_day" id="pickup_day" value="Monday">-->
 
-<form>
-<label for="firstname"> First Name: </label>
-<input type="text" name="firstname" id="firstname" required maxlength="45">
-<label for="lastname"> Last Name: </label>
-<input type="text" name="lastname" id="lastname" required maxlength="45">
-<button>Submit</button>
-</form>

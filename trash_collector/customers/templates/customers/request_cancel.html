@@ -1,40 +1,45 @@
 {% extends 'base.html' %}
 
-{% block title %}{% block header %} Customer Home {% endblock %}{% endblock %}
+{% block title %}{% block header %}  {% endblock %}{% endblock %}
 
 {% block content %}
   {% if user.is_authenticated %}
 
     {% if customer.has_used_one_time_extra_service == False %}
-    Register a one-time emergency garbage collection?
-    Please enter the day below in yyyy-mm-dd format.
+<div class="alert alert-dark" role="alert">
+  If you need garbage collection other than your regular service.
+    You can request an extra pickup below.
+</div>
+
 
     <form action="{% url 'customers:request_cancel' customer.id %}" method="post">
     {% csrf_token %}
-    One Time Pickup date:<input type="text" name="one_time" id="one_time"> yyyy-mm-dd<br>
+    Pickup date:<input type="date" name="one_time" placeholder="yyyy-mm-dd" value="" min="2020-01-01" max="2099-12-31" id="one_time"><br>
     <input type="submit" value="submit"><br>
     </form>
     {% endif %}
 
     {% if customer.has_used_one_time_extra_service == True %}
-    You've already used up your one-time emergency service,
-    You can request it again, but it will cost you 20$
-    If you accept, please enter below the yyyy-mm-dd format for service.
-    You will be automatically charged to your account to be billed later.
+    <p>You've already used up your one-time emergency service,
+    You can request it again, but it will cost you 20$</p>
+
       <form action="{% url 'customers:request_cancel' customer.id %}" method="post">
     {% csrf_token %}
-    Extra Service:<input type="text" name="extra_service" id="extra_service">yyyy-mm-dd<br>
+    Extra Service:<input type="date" name="extra_service" placeholder="yyyy-mm-dd" value="" min="2020-01-01" max="2099-12-31" id="extra_service"><br>
     <input type="submit" value="submit"><br>
     </form>
     {% endif %}
 
-    Need to temporarily suspend service because you're going on vacation
+<div class="alert alert-dark" role="alert">
+     Need to temporarily suspend service because you're going on vacation
     and you dont want to pay for service for a couple weeks? Select the start
-    and end dates for suspension, make sure to use correct format.
+    and end dates for suspension.
+</div>
+
           <form action="{% url 'customers:request_cancel' customer.id %}" method="post">
     {% csrf_token %}
-    Start:<input type="text" name="start" id="start"> yyyy-mm-dd<br>
-    End: <input type="text" name="end" id="end"> yyyy-mm-dd <br>
+    Start:<input type="date" name="start" placeholder="yyyy-mm-dd" value="" min="2020-01-01" max="2099-12-31" id="start"> <br>
+    End: <input type="date" name="end" placeholder="yyyy-mm-dd" value="" min="2020-01-01" max="2099-12-31" id="end"> <br>
     <input type="submit" value="submit">
     </form>
 

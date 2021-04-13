@@ -1,13 +1,17 @@
 
 {% extends 'base.html' %}
 
-{% block title %}{% block header %}Login Page{% endblock %}{% endblock %}
+{% block title %}{% block header %}<p style="text-align: center">Login<p>{% endblock %}{% endblock %}
 
 {% block content %}
-<h2>Log In</h2>
-<form method="post">
+{% load static %}
+
+<form style="text-align: center" method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Log In</button>
+  <button syle="text-align: center" type="submit">Log In</button>
 </form>
+<img src="{% static 'image/banner3.png' %}" alt="photo" style="width: 100%">
+<div style="text-align: bottom-center"><img class="img-fluid" src="{% static 'image/logo.png' %}" alt="photo"></div>
+
 {% endblock %}

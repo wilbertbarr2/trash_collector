@@ -1,34 +1,37 @@
 {% extends 'base.html' %}
 
-{% block title %}{% block header %} Employee Home {% endblock %}{% endblock %}
+{% block title %}{% block header %} {% endblock %}{% endblock %}
 
 {% block content %}
   {% if user.is_authenticated %}
-   {% if end == False %} Hello Employee {{ user.username }}! {% endif %}
+
   {% if user.manages_zipcode != null %}
+<!--Inner style editing here -->
+<div class="container" style="width: 100%">
+  <div class="row" style="width: 100%">
+      <div class="col-sm" style="width: 100%">
+              <h1 style="font-size: 4vw; center"> {% if end == False %}  LET'S GET STARTED! <br>Click START WORK in the navbar {% endif %} {% if end == True %} COMPLETE {% endif %}</h1>
+              {% if end == True %}
+              <br>Great work! You're done for the day!<br> Logout and go home.
+              {% endif %}
 
-<div class="container" style="width: auto">
-  <div class="row" style="width: auto">
-    <div class="col-sm" style="width: auto">
-      <h1 style="font-size: 4vw; center"> {% if end == False %}  LET'S GET STARTED! Click START WORK in the navbar {% endif %} {% if end == True %} COMPLETE {% endif %}</h1>
-        {% if end == True %}
-  <br>Great work! You're done for the day!<br> Logout and go home.
-  {% endif %}
+        <ul style="overflow-y: scroll; height:400px; width: auto">
+              {% for customer in customers %}
 
-      <ul style="overflow-y: scroll; height:250px; width: auto">
-            {% for customer in customers %}
-        <li><h style="fontsize: 4vw"> Name: {{customer.name}}<br>  </h>
-            <h>address: {{customer.address}} <br></h>
-            <h>zipcode: {{customer.zipcode}}<br></h>
-            <h>pickup day: {{customer.pickup_day}}<br></h>
-          <button onclick="flexCheckDefault"><a href="{% url 'employees:charge_customer' customer.id %}">charge customer</a></button>
-        </li>
-          {% endfor %}
-      </ul>
-    </div>
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                  <h5 class="card-title">{{customer.name}}</h5>
+                  <p class="card-text" style="color: black">{{customer.address}}<br> {{customer.zipcode}}<br> {{customer.city}}<br>{{customer.pickup_day}}<br></p>
+                 <button onclick="flexCheckDefault"><a href="{% url 'employees:charge_customer' customer.id %}">charge customer</a></button>
+              </div>
+           </div>
+            {% endfor %}
+        </ul>
+      </div>
   </div>
 </div>
-
+{% load static %}
+<img src="{% static 'image/logo.png' %}" alt="funny image" class="responsive" width="100%" height="auto%">
 
   {% endif %}
   {% if user.manages_zipcode == null %}

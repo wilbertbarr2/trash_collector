@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{% block header %} Employee Home {% endblock %}{% endblock %}
+{% block title %}{% block header %} Daily Customers {% endblock %}{% endblock %}
 
 {% block content %}
   {% if user.is_authenticated %}
@@ -10,7 +10,7 @@
 
 <form action="{% url 'employees:daily_view' %}" method="post">
   {% csrf_token %}
-  <label for="day">Choose a car:</label>
+  <label for="day">Choose a day:</label>
   <select id="day" name="day">
     <option value="Monday">Monday</option>
     <option value="Tuesday">Tuesday</option>

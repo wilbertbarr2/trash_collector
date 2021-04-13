@@ -1,0 +1,87 @@
+  .col {
+    border:solid;
+    color: white;
+    border-color: #d6d8d9
+}
+  .container {
+      height: 100%;
+      width: auto;
+      background: gray;
+      color: white;
+  }
+
+  .list {
+      height: 100%;
+      width: auto;
+      background: black;
+      color: white;
+      border-bottom-width: inherit;
+  }
+
+body > li {
+background: black;
+color: white;
+font-size: 8vw;
+}
+
+body {
+background: white;
+color:black
+
+}
+
+body > form {
+
+      height: 100%;
+      width: auto;
+      background: black;
+      color: white;
+
+}
+body {
+color:black
+background: black
+}
+
+body > li > h {
+color:black
+}
+
+ul {
+color:black
+}
+
+h5, h5 {
+    font-size: 1.25rem;
+    color:black
+}
+
+p {
+color:black;
+}
+
+.h1, h1 {
+    font-size: 2.5rem;
+    color:black;
+}
+
+.h2, h2 {
+    font-size: 2rem;
+    color:black;
+}
+
+#bannerimage {
+  width: 100%;
+  background-image: url('/static/image/banner3.png');
+  height: 100px;
+  background-position: center;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        font-family: inherit;
+    color: black;
+}

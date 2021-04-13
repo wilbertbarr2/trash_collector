@@ -39,30 +39,32 @@ def trash_customer(request):
         user.first_name = first_name
         user.last_name = last_name
         user.save()
-        customers = Customer.objects.all()
-        for customer in customers:
-            if customer.user_id == user.id:
-                customer.name = user.first_name + " " + user.last_name
-                customer.zipcode = zipcode
-                customer.address = address
-                customer.state = state
-                customer.city = city
-                customer.pickup_day = pickup_day
-                customer.user_id = user.id
-                customer.save()
-                return HttpResponseRedirect(reverse('customers:index'))
+        try:
+            customer = Customer.objects.get(user_id=user.id)
+        except get_object_or_404:
+            customer = Customer()
+            customer.name = user.first_name + " " + user.last_name
+            customer.zipcode = zipcode
+            customer.address = address
+            customer.state = state
+            customer.city = city
+            customer.pickup_day = pickup_day
+            customer.user = user
+            customer.save()
+            return HttpResponseRedirect(reverse('customers:index'))
 
-        customer = Customer()
         customer.name = user.first_name + " " + user.last_name
         customer.zipcode = zipcode
         customer.address = address
         customer.state = state
         customer.city = city
         customer.pickup_day = pickup_day
-        customer.user = user
+        customer.user_id = user.id
         customer.save()
         return HttpResponseRedirect(reverse('customers:index'))
+
     else:
+
         return render(request, 'customers/trash_customer.html')
 
 
@@ -79,6 +81,9 @@ def suspend_account(request):
             'customer': customer
         }
         return render(request, 'customers/suspend_account.html', context)
+
+## the customer_id parameter, I dont think I ended up using. I just haven't found time yet to go through code
+## pretty sure I dont need it... just going to save it till later to fix it in the url.py and .html pages.
 
 
 def request_cancel(request, customer_id):
