@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{% block header %} Register {% endblock %}{% endblock %}
+{% block title %}{% block header %} <p style="text-align:center"> Register </p> {% endblock %}{% endblock %}
 
 {% block content %}
   {% if user.is_authenticated %}
@@ -8,9 +8,9 @@
 <p>Register for Trash Collection services by filling out this form.</p>
 {% endif %}
 
-{{user.first_name}} {{user.last_name}}
+<p style="text-align: center">{{user.first_name}} {{user.last_name}}</p>
 
-<form action="{% url 'customers:trash_customer' %}" method="post">
+<form style="text-align:center" action="{% url 'customers:trash_customer' %}" method="post">
     {% csrf_token %}
     First_Name:<input type="text" name="first_name" id="first_name" required maxlength="45"><br>
     Last_Name:<input type="text" name="last_name" id="last_name" required maxlength="45"><br>

@@ -3,12 +3,15 @@
 {% block title %}{% block header %} <div style="text-align: center; background-color: beige">Daily Customers</div> {% endblock %}{% endblock %}
 
 {% block content %}
+{% load static %}
+
+
   {% if user.is_authenticated %}
     <div style="text-align: center">Hello Employee {{ user.username }}!</div>
 
 
 
-<form action="{% url 'employees:daily_view' %}" method="post">
+<form style="text-align: center" id="daily_view" action="{% url 'employees:daily_view' %}" method="post">
   {% csrf_token %}
   <label for="day">Choose a day:</label>
   <select id="day" name="day">

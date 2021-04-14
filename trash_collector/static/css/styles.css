@@ -89,3 +89,9 @@ button, input, optgroup, select, textarea {
         font-family: inherit;
     color: black;
     }
+
+
+#daily_view {
+    margin-left: auto;
+    margin-right: auto;
+}
