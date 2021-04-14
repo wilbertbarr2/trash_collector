@@ -1,7 +1,7 @@
 
 {% extends 'base.html' %}
 
-{% block title %}{% block header %}<p style="text-align: center">Login<p>{% endblock %}{% endblock %}
+{% block title %}{% block header %}<p style="text-align: center; background-color: black; color: white">Login<p>{% endblock %}{% endblock %}
 
 {% block content %}
 {% load static %}
@@ -11,7 +11,7 @@
   {{ form.as_p }}
   <button syle="text-align: center" type="submit">Log In</button>
 </form>
-<img src="{% static 'image/banner3.png' %}" alt="photo" style="width: 100%">
+<img src="{% static 'image/banner3.png' %}" alt="photo" style="width: 100%; background-color: black">
 <div style="text-align: bottom-center"><img class="img-fluid" src="{% static 'image/logo.png' %}" alt="photo"></div>
-
+<div style="text-align: bottom; height: 100px; width: 100%; background-color: black">WM</div>
 {% endblock %}

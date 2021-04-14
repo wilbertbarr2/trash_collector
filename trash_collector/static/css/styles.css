@@ -6,9 +6,16 @@
   .container {
       height: 100%;
       width: auto;
-      background: gray;
+      background: black;
       color: white;
   }
+
+
+.container {
+    height: 100%;
+    width: auto;
+    background: black;
+    color: white;
 
   .list {
       height: 100%;
@@ -24,11 +31,12 @@ color: white;
 font-size: 8vw;
 }
 
-body {
-background: white;
-color:black
+ body {
+      background-image: url('/static/image/banner3.png');
+      height: auto;
+      width: 100%;
 
-}
+ }
 
 body > form {
 
@@ -38,13 +46,9 @@ body > form {
       color: white;
 
 }
-body {
-color:black
-background: black
-}
 
 body > li > h {
-color:black
+    color:black
 }
 
 ul {
@@ -84,4 +88,4 @@ button, input, optgroup, select, textarea {
         line-height: inherit;
         font-family: inherit;
     color: black;
-}
+    }

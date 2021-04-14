@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}{% block header %} Daily Customers {% endblock %}{% endblock %}
+{% block title %}{% block header %} <div style="text-align: center; background-color: beige">Daily Customers</div> {% endblock %}{% endblock %}
 
 {% block content %}
   {% if user.is_authenticated %}
-    Hello Employee {{ user.username }}!
+    <div style="text-align: center">Hello Employee {{ user.username }}!</div>
 
 
 
@@ -20,17 +20,25 @@
   </select>
   <input type="submit">
 </form>
-<div class="container" style="height: max, width: auto">
-  <div class="row" style="height: max, width: auto">
-    <div class="col-sm" style="width: auto">
+<!--editing here-->
+
+
+
+<!--editing here-->
+<div class="container" style="height: 100%">
+  <div class="row">
+    <div class="col-sm" style="width: 100%; background-color: beige">
       <ul style="overflow-y: scroll; height:350px; width: auto">
             {% for customer in customers %}
-        <li><h style="fontsize: 4vw"> Name: {{customer.name}}<br>  </h>
-            <h>address: {{customer.address}} <br></h>
-            <h>zipcode: {{customer.zipcode}}<br></h>
-            <h>pickup day: {{customer.pickup_day}}<br></h>
-            <br>
-        </li>
+
+        <div class="card" style="width: 100%">
+          <div class="card-body">
+            <h style="font-size: 4vw; color: black"> Name: {{customer.name}}<br>
+                address: {{customer.address}}<br>
+                zipcode: {{customer.zipcode}}<br>
+                pickup day: {{customer.pickup_day}} </h>
+         </div>
+        </div>
           {% endfor %}
       </ul>
     </div>

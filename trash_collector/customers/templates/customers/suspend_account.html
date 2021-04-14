@@ -3,6 +3,7 @@
 {% block title %}{% block header %} Suspend Service {% endblock %}{% endblock %}
 
 {% block content %}
+{% load static %}
   {% if user.is_authenticated %}
 
 Hey {{user.first_name}}  {{user.last_name}}!
@@ -18,6 +19,9 @@ You must pay your debt before you can close your account
     a new account name and login.
     <input type="submit" value="Cancel Subscription">
 </form>
+
+<div class="container" style="text-align: center" ><img class="img-fluid" src="{% static 'image/logo.png' %}" style="height:auto; width: 100%" class="responsive" alt="photo"></div>
+
 {% endif %}
   {% else %}
     <p>You are at the customer index, but you are not logged in.</p>

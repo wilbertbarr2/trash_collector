@@ -6,37 +6,37 @@
 
   {% if user.is_authenticated %}
   {% if customer.id == null %}
-    Hello user, please register to become a customer above.
-    Select "Register" in the navbar, and you can change your pickup day anytime by clicking there also.
+    <p>Hello user, please register to become a customer above.</p>
+<p style="text-align: center; font: 4vw">Select "Register" in the navbar, and you can change your pickup day anytime by clicking there also.</p>
   {% endif %}
   {% if customer.id != null %}
 <div class="alert alert-success" role="alert">
-   GREEN LIGHT TO GO! {{customer.name}} at {{ customer.address }} we'll see you each {{customer.pickup_day}}!
+   <p><b>GREEN LIGHT TO GO!</b> {{customer.name}} at {{ customer.address }} we'll see you each {{customer.pickup_day}}!</p>
 </div>
 
 
   {% if customer.onetime_pickup != None %}
 <div class="alert alert-dark" role="alert">
-  We will be there {{customer.onetime_pickup}} for your one time pickup
+  <p>We will be there {{customer.onetime_pickup}} for your one time pickup.</p>
 </div>
   .<br>
   {% endif %}
 <div class="alert alert-dark" role="alert">
-   Do you need a one time extra emergency trash pickup day?
+   <p>Do you need a one time extra emergency trash pickup day?
   Do you need to suspend service temporarily while on vacation?
-  <br>Click "Extra Service" on the navigation bar.
+     Click "Extra Service" on the navigation bar.</p>
 </div>
 
   <br>
 <div class="alert alert-warning" role="alert">
-  You currently owe {{customer.balance}}$.
+  <p>You currently owe {{customer.balance}}$.</p>
 </div>
   <br>
   {% if customer.balance > 90 %}
 <div class="alert alert-danger" role="alert">
-   If you owe more than 100$ we will stop collecting your garbage until debt is paid.
+   <p>If you owe more than 100$ we will stop collecting your garbage until debt is paid.
   <br>
-  Handle your debts below.
+     Handle your debts below.</p>
 </div>
 
   {% endif %}

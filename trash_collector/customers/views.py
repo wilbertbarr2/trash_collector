@@ -41,7 +41,7 @@ def trash_customer(request):
         user.save()
         try:
             customer = Customer.objects.get(user_id=user.id)
-        except get_object_or_404:
+        except:
             customer = Customer()
             customer.name = user.first_name + " " + user.last_name
             customer.zipcode = zipcode

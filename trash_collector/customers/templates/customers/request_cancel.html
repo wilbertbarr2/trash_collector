@@ -3,6 +3,7 @@
 {% block title %}{% block header %}  {% endblock %}{% endblock %}
 
 {% block content %}
+{% load static %}
   {% if user.is_authenticated %}
 
     {% if customer.has_used_one_time_extra_service == False %}
@@ -42,7 +43,7 @@
     End: <input type="date" name="end" placeholder="yyyy-mm-dd" value="" min="2020-01-01" max="2099-12-31" id="end"> <br>
     <input type="submit" value="submit">
     </form>
-
+<div class="container" style="text-align: center" ><img class="img-fluid" src="{% static 'image/trucks.png' %}" style="height:auto; width: 100%" class="responsive" alt="photo"></div>
 
   {% else %}
     <p>You are at the customer index, but you are not logged in.</p>

@@ -7,20 +7,20 @@
 
   {% if user.manages_zipcode != null %}
 <!--Inner style editing here -->
-<div class="container" style="width: 100%">
+<div class="container" style="width: 100%; padding: inherit;;">
   <div class="row" style="width: 100%">
-      <div class="col-sm" style="width: 100%">
-              <h1 style="font-size: 4vw; center"> {% if end == False %}  LET'S GET STARTED! <br>Click START WORK in the navbar {% endif %} {% if end == True %} COMPLETE {% endif %}</h1>
+      <div class="col-sm" style="width: 100%; padding: revert;">
+              <h1 style="font-size: 4vw; text-align: center"> {% if end == False %}  LET'S GET STARTED! <br>Click START WORK in the navbar {% endif %} {% if end == True %} COMPLETE {% endif %}</h1>
               {% if end == True %}
               <br>Great work! You're done for the day!<br> Logout and go home.
               {% endif %}
 
-        <ul style="overflow-y: scroll; height:400px; width: auto">
+        <ul style="overflow-y: scroll; height:400px; width: 100%; background-color: white">
               {% for customer in customers %}
 
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="width: 100%;">
               <div class="card-body">
-                  <h5 class="card-title">{{customer.name}}</h5>
+                  <h5 class="card-title" style="color: black">{{customer.name}}</h5>
                   <p class="card-text" style="color: black">{{customer.address}}<br> {{customer.zipcode}}<br> {{customer.city}}<br>{{customer.pickup_day}}<br></p>
                  <button onclick="flexCheckDefault"><a href="{% url 'employees:charge_customer' customer.id %}">charge customer</a></button>
               </div>
@@ -45,6 +45,9 @@
       Last Name:<input type ="text" name="last_name" id="last_name">
       <input type="submit" value="submit">
     </form>
+<div class="container" style="text-align: center" ><img class="img-fluid" src="{% static 'image/ZHHx.gif' %}" style="height:auto; width: 100%" class="responsive" alt="photo"></div>
+<div class="container" style="text-align: center" ><img class="img-fluid" src="{% static 'image/young_worker.jpg' %}" style="height:auto; width: 100%" class="responsive" alt="photo"></div>
+
   {% endif %}
 
 
