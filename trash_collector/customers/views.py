@@ -88,31 +88,34 @@ def suspend_account(request):
 
 def request_cancel(request, customer_id):
     user = request.user
-    customer = Customer.objects.get(user_id=user.id)
-    if request.method == 'POST':
-        one_time = request.POST.get('one_time')
-        extra_service = request.POST.get('extra_service')
-        start = request.POST.get('start')
-        end = request.POST.get('end')
-        if one_time is not None:
-            customer.has_used_one_time_extra_service = True
-            customer.onetime_pickup = one_time
-        if extra_service is not None:
-            customer.onetime_pickup = extra_service
-            customer.balance += 20
-        if start != 'null':
-            customer.tem_suspend_start = start
-        if end != 'null':
-            customer.tem_suspend_end = end
-        customer.save()
-
-        return HttpResponseRedirect(reverse('customers:index'))
-    else:
+    try:
         customer = Customer.objects.get(user_id=user.id)
-        context = {
-            'customer': customer
-        }
-        return render(request, 'customers/request_cancel.html', context)
+        if request.method == 'POST':
+            one_time = request.POST.get('one_time')
+            extra_service = request.POST.get('extra_service')
+            start = request.POST.get('start')
+            end = request.POST.get('end')
+            if one_time is not None:
+                customer.has_used_one_time_extra_service = True
+                customer.onetime_pickup = one_time
+            if extra_service is not None:
+                customer.onetime_pickup = extra_service
+                customer.balance += 20
+            if start != 'null':
+                customer.tem_suspend_start = start
+            if end != 'null':
+                customer.tem_suspend_end = end
+            customer.save()
+
+            return HttpResponseRedirect(reverse('customers:index'))
+        else:
+            customer = Customer.objects.get(user_id=user.id)
+            context = {
+                'customer': customer
+            }
+            return render(request, 'customers/request_cancel.html', context)
+    except:
+        return render(request, 'customers/index.html')
 
 
 
