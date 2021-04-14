@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, HttpResponseRedirect, reverse, get_object_or_404
 from .models import Customer
+from django_google_maps import fields as map_fields
+
 
 
 # Create your views here.

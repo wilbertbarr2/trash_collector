@@ -8,6 +8,7 @@ class User(AbstractUser):
     is_employee = models.BooleanField(default=False)
     manages_zipcode = models.CharField(max_length=50, default=None, null=True)
 
+
     def __str__(self):
         return self.username
 
