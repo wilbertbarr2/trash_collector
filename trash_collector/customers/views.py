@@ -100,8 +100,10 @@ def request_cancel(request, customer_id):
         if extra_service is not None:
             customer.onetime_pickup = extra_service
             customer.balance += 20
-        customer.tem_suspend_start = start
-        customer.tem_suspend_end = end
+        if start != 'null':
+            customer.tem_suspend_start = start
+        if end != 'null':
+            customer.tem_suspend_end = end
         customer.save()
 
         return HttpResponseRedirect(reverse('customers:index'))

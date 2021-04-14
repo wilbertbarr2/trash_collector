@@ -12,10 +12,10 @@
       <div class="col-sm" style="width: 100%; padding: revert;">
               <h1 style="font-size: 4vw; text-align: center"> {% if end == False %}  LET'S GET STARTED! <br>Click START WORK in the navbar {% endif %} {% if end == True %} COMPLETE {% endif %}</h1>
               {% if end == True %}
-              <br>Great work! You're done for the day!<br> Logout and go home.
+          <p><br>Great work! You're done for the day!<br> Logout and go home.</p>
               {% endif %}
 
-        <ul style="overflow-y: scroll; height:400px; width: 100%; background-color: white">
+        <ul style="overflow-y: scroll; height:250px; width: 100%; background-color: white">
               {% for customer in customers %}
 
           <div class="card" style="width: 100%;">
@@ -31,7 +31,15 @@
   </div>
 </div>
 {% load static %}
-<img src="{% static 'image/logo.png' %}" alt="funny image" class="responsive" width="100%" height="auto%">
+<!--GOOGLE MAPS-->
+
+
+
+
+
+
+
+<!-- GOOGLE MAPS-->
 
   {% endif %}
   {% if user.manages_zipcode == null %}

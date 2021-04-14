@@ -3,6 +3,37 @@
     color: white;
     border-color: #d6d8d9
 }
+
+
+.map-responsive{
+
+    overflow:hidden;
+
+    padding-bottom:60.25%;
+
+    position:relative;
+
+    height:0;
+
+}
+
+.map-responsive iframe{
+
+    left:0;
+
+    top:0;
+
+    height:100%;
+
+    width:100%;
+
+    position:absolute;
+
+}
+
+
+
+
   .container {
       height: 100%;
       width: auto;
