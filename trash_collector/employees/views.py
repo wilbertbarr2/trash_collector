@@ -26,6 +26,9 @@ def index(request):
 
     return render(request, 'employees/index.html', context)
 
+def map(request):
+
+    return render(request, 'employees/map.html')
 
 def zipcode(request):
     if request.method == 'POST':

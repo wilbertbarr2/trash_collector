@@ -32,22 +32,11 @@
 
 }
 
-
-
-
-  .container {
-      height: 100%;
-      width: auto;
-      background: black;
-      color: white;
-  }
-
-
 .container {
     height: 100%;
     width: auto;
-    background: black;
-    color: white;
+    background: beige;
+    color: black;
 
   .list {
       height: 100%;
@@ -58,8 +47,8 @@
   }
 
 body > li {
-background: black;
-color: white;
+background: beige;
+color: black;
 font-size: 8vw;
 }
 
@@ -126,4 +115,19 @@ button, input, optgroup, select, textarea {
 #daily_view {
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+  width: 100%
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }

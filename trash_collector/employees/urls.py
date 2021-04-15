@@ -10,5 +10,6 @@ urlpatterns = [
     path('zip', views.zipcode, name="zipcode"),
     path('hello', views.match_zipcodes, name="match_zip"),
     path('charge/<int:customer_id>', views.charge_customer, name="charge_customer"),
-    path('daily_view', views.daily_view, name="daily_view")
+    path('daily_view', views.daily_view, name="daily_view"),
+    path('map', views.map, name='map')
 ]

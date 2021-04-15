@@ -7,7 +7,7 @@
 
   {% if user.manages_zipcode != null %}
 <!--Inner style editing here -->
-<div class="container" style="width: 100%; padding: inherit;;">
+<div class="container" style="width: 100%; padding: inherit; background-color: white;">
   <div class="row" style="width: 100%">
       <div class="col-sm" style="width: 100%; padding: revert;">
               <h1 style="font-size: 4vw; text-align: center"> {% if end == False %}  LET'S GET STARTED! <br>Click START WORK in the navbar {% endif %} {% if end == True %} COMPLETE {% endif %}</h1>
@@ -32,26 +32,54 @@
 </div>
 {% load static %}
 <!--GOOGLE MAPS-->
-
-
-
-<!-- I COULD NOT FIGURE OUT THE GOOGLE API... I Put this here to show what I want my screen to look like.
-I want a googlemaps api that allows them to SEARCH the address there, in the window of googlemaps..
-Or, I want a "Drive" button next to the charge button, that will put a pin and drive there...
-Or I want the API for routes, where the routes are always the same for every employee, and they go on a specific route.
-But, honestly... after hours on this, I haven't got anywhere with the API. Watched videos, but none were helpful..
-Tried some guides, but got lost on all of them... because of the hours I've spend already without any fruit..
-I'm going to just focus on other things for now. -->
-<div class="map-responsive" style="padding-bottom: 100%;">
-
-<iframe src="https://www.google.com/maps" width="600" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-</div>
+<!--TEST-->
 
 
 
 
-<!-- GOOGLE MAPS-->
+
+
+
+
+
+
+
+    <div id="map" style="height: 400px; width 100%">here</div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3CR7HFXvYhJDemaEE5f82ZvH7SUb8GDQ&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+
+<!--TEST-->
+
+ <!--   <button onclick="flexCheckDefault"><a href="{% url 'employees:map' %}">map</a></button>
+"removingfor now -->
+
+
+
+
+
+
+
+<!--
+        <div class="map-responsive" style="padding-bottom: 100%;">
+
+        <iframe
+          width="600"
+          height="450"
+          style="border:0"
+          loading="lazy"
+          allowfullscreen
+          src="map">
+        </iframe>
+        </div>
+-->
+
+
+
+<!-- GOOGLE MAPS  {% url 'employees:map' %}  -->
 
   {% endif %}
   {% if user.manages_zipcode == null %}
