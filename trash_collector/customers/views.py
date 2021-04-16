@@ -11,9 +11,8 @@ from django_google_maps import fields as map_fields
 
 
 def index(request):
-    # get the logged in user within any view function
+
     user = request.user
-    # This will be useful while creating a customer to assign the logged in user as the user foreign key
     customers = Customer.objects.all()
     for customer in customers:
         if customer.user_id == user.id:
@@ -22,10 +21,10 @@ def index(request):
             }
             return render(request, 'customers/index.html', context)
 
-    # Will also be useful in any function that needs
     print(user)
     return render(request, 'customers/index.html')
 
+# I didn't decide what Except I need. I think it's DOESNOTEXIST.  The code works without having defined it. I will define it later.
 
 def trash_customer(request):
     if request.method == 'POST':
