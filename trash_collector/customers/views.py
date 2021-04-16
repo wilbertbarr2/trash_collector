@@ -86,6 +86,10 @@ def suspend_account(request):
 ## the customer_id parameter, I dont think I ended up using. I just haven't found time yet to go through code
 ## pretty sure I dont need it... just going to save it till later to fix it in the url.py and .html pages.
 
+## Also, I wanted to mention that I am aware this function should be broken into two seperate functions.
+## one for the request.post start and end, and one for the request.post one_time/extra_service.
+## I just didn't get around to it yet but letting you know I'm aware. Probably could break up a few of my functions in
+## here, but particularly this one needs to be broken up. Then I wouldn't even need to ask if values are null..
 
 def request_cancel(request, customer_id):
     user = request.user
